@@ -6,6 +6,7 @@ pipeline {
 			steps {
 			sh 'ant -f build.xml -v'
 			sh 'hostname'
+			sh 'pwd'
 }
 }
 }
