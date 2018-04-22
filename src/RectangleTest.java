@@ -6,7 +6,7 @@ public class RectangleTest {
 
   @Test
   public void testGetArea() {
-    assertEquals(myRectangle.getArea(), 30);
+    assertEquals(myRectangle.getArea(), 31);
   }
 
   @Test
