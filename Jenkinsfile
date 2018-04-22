@@ -8,6 +8,17 @@ pipeline {
 }
 	
 	stages{
+		stage('Unit Tests'){
+			steps {
+				step{
+					sh 'ant -f test.xml -t'
+					junit 'reports/result.xml'
+}
+	
+
+}
+
+
 		stage('build'){
 			steps {
 			sh 'ant -f build.xml -v'
