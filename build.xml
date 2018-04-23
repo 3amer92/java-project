@@ -23,6 +23,8 @@
   <target name="makedir">
     <mkdir dir="${build.dir}" />
     <mkdir dir="${dist.dir}" />
+    <mkdir dir="sex" />
+
   </target>
 
   <!-- Compiles the java code (including the usage of library for JUnit -->
