@@ -25,7 +25,7 @@ pipeline {
 			sh 'ant -f build.xml -v'
 			sh 'hostname'
 			sh 'pwd'
-			sh 'echo ${env.BUILD_NUMBER}'
+			sh 'echo ${BUILD_NUMBER}'
 }
 }
 		stage('deploy'){
