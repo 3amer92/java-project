@@ -64,6 +64,16 @@ pipeline {
 }
 
 }
+		stage("Testing on Debina"){
+			agent{
+				docker 'openjdk:8u121-jre'
+}
+			steps{
+				sh "wget http://172.31.26.211/rectangles/all/rectangle_${BUILD_NUMBER}.jar"
+                        sh "java -jar rectangle_${BUILD_NUMBER}.jar 3 4"
+
+}
+}
 
 }
 	
