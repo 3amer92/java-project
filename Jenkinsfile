@@ -1,7 +1,5 @@
 pipeline {
-	agent {
-		label 'master'
-}
+	agent none
 
 	options{
 		buildDiscarder(logRotator(numToKeepStr: '2', artifactNumToKeepStr: '1'))
@@ -10,6 +8,9 @@ pipeline {
 }
 	
 	stages{
+		agent{
+			label 'apache'
+}
 		stage('Unit Tests'){
 			steps {
 					sh 'ant -f test.xml -v'
@@ -21,6 +22,9 @@ pipeline {
 
 
 		stage('build'){
+			agent{
+				label 'apache'
+}
 			steps {
 			sh 'ant -f build.xml -v'
 			sh 'hostname'
@@ -29,6 +33,9 @@ pipeline {
 }
 }
 		stage('deploy'){
+			agent{
+				label 'apache'
+}
 			steps{
 				sh "cp dist/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/all/"
 				sh "pwd"
@@ -37,6 +44,18 @@ pipeline {
 		
 
 }
+
+		stage("Testing on CentOS"){
+			agent{
+				label 'CentOS'
+}
+		steps{
+			sh "wget http://172.31.26.211/rectangles/all/rectangle_${BUILD_NUMBER}.jar"
+			sh "java -jar rectangle_${BUILD_NUMBER}.jar 3 4"
+}
+
+}
+
 }
 	post{
 		always{
