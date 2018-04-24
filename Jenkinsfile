@@ -33,6 +33,13 @@ pipeline {
 			sh 'pwd'
 			sh 'echo $BUILD_NUMBER'
 }
+
+			        post{
+                			success{
+                        			archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
+}
+}
+
 }
 		stage('deploy'){
 			agent{
@@ -59,11 +66,7 @@ pipeline {
 }
 
 }
-	post{
-		always{
-			archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
-}
-}
+	
 
 }
 
