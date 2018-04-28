@@ -75,12 +75,15 @@ pipeline {
 }
 }
 
-		stage("Promote to Green folder"){
+		stage("Promote to green folder in apache"){
 
 			agent {
 				label 'apache'
 }
 
+			when{
+				branch 'development'
+}
 			steps{
 				sh "cp /var/www/html/rectangles/all/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/"
 }
