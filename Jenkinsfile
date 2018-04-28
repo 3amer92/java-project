@@ -78,7 +78,7 @@ pipeline {
 		stage("Promote to Green folder"){
 
 			agent {
-				lable 'apache'
+				label 'apache'
 }
 
 			steps{
