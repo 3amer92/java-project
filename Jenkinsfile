@@ -83,7 +83,7 @@ pipeline {
 }
 
 			when{
-				branch 'development'
+				branch 'master'
 }
 			steps{
 				sh "cp /var/www/html/rectangles/all/${env.BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/"
@@ -98,7 +98,7 @@ pipeline {
 }
 
 			when{
-				branch 'master'
+				branch 'development'
 }
 
 			steps{
