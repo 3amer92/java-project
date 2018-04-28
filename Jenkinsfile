@@ -86,7 +86,7 @@ pipeline {
 				branch 'development'
 }
 			steps{
-				sh "cp /var/www/html/rectangles/all/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/"
+				sh "cp /var/www/html/rectangles/all/${env.BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/"
 }
 
 }
