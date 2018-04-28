@@ -110,11 +110,12 @@ pipeline {
 				echo 'Checking Out Master Brance'
 				sh 'git checkout master'
 				echo "Merging Development into Master Branch"
+				sh 'git pull'
 				sh 'git merge development'
 				echo 'Pushing to Origin Master'
 				sh 'git push origin master'
 
-				echo "amer"
+				echo "amer1"
 }
 }
 
