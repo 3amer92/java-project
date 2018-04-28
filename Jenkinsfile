@@ -115,7 +115,7 @@ pipeline {
 				echo 'Pushing to Origin Master'
 				sh 'git push origin master'
 
-				echo "amer3"
+				echo "amer4"
 }
 }
 
