@@ -98,7 +98,7 @@ pipeline {
 }
 
 			when{
-				branch 'development'
+				branch 'master'
 }
 
 			steps{
