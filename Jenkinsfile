@@ -112,6 +112,7 @@ pipeline {
 				echo "Merging Development into Master Branch"
 				sh 'git merge development'
 				echo 'Pushing to Origin Master'
+				sh 'git pull'
 				sh 'git push origin master'
 
 				echo "amer1"
