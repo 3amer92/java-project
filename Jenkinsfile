@@ -108,7 +108,7 @@ pipeline {
 				echo "Checking Out Development Branch"
 				sh 'git checkout development'
 				sh 'git pull'
-				sh 'git commit -am "test"
+				sh 'git commit -am "test"'
 				echo 'Checking Out Master Brance'
 				sh 'git checkout master'
 				sh 'git pull'
