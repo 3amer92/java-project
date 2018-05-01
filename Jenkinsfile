@@ -115,7 +115,7 @@ pipeline {
 				sh 'git merge development'
 				echo 'Pushing to Origin Master'
 				sh 'git push origin master'
-				echo "test11"
+				echo "test12"
 				
 }
 }
