@@ -6,7 +6,10 @@ pipeline {
 
 
 }
-	
+	environment{
+		MAJOR_VERSION = 1
+
+}	
 	stages{
 	
 		stage('Unit Tests'){
@@ -47,7 +50,7 @@ pipeline {
 }
 			steps{
 				sh "mkdir -p /var/www/html/rectangles/all/${env.BRANCH_NAME}"
-				sh "cp dist/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
+				sh "cp dist/rectangle_{env.MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
 				sh "pwd"
 				
 }
@@ -60,8 +63,8 @@ pipeline {
 				label 'CentOS'
 }
 		steps{
-			sh "wget http://172.31.26.211/rectangles/all/${env.BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar"
-			sh "java -jar rectangle_${BUILD_NUMBER}.jar 3 4"
+			sh "wget http://172.31.26.211/rectangles/all/${env.BRANCH_NAME}/rectangle_{env.MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+			sh "java -jar rectangle_{env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 3 4"
 }
 
 }
@@ -70,8 +73,8 @@ pipeline {
 				docker 'openjdk:8u121-jre'
 }
 			steps{
-				sh "wget http://172.31.26.211/rectangles/all/${env.BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar"
-                        sh "java -jar rectangle_${BUILD_NUMBER}.jar 3 4"
+				sh "wget http://172.31.26.211/rectangles/all/${env.BRANCH_NAME}/rectangle_{env.MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+                        sh "java -jar rectangle_{env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 3 4"
 
 }
 }
@@ -86,7 +89,7 @@ pipeline {
 				branch 'master'
 }
 			steps{
-				sh "cp /var/www/html/rectangles/all/${env.BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/"
+				sh "cp /var/www/html/rectangles/all/${env.BRANCH_NAME}/rectangle_{env.MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/green/"
 }
 
 }
@@ -114,7 +117,9 @@ pipeline {
 				sh 'git merge development'
 				echo 'Pushing to Origin Master'
 				sh 'git push origin master'
-				echo "test14"
+				echo "Tagging the Release"
+				sh "git tag rectangle-{env.MAJOR_VERSION}.${env.BUILD_NUMBER}"
+				sh "git push origin rectangle-{env.MAJOR_VERSION}.${env.BUILD_NUMBER}"
 				
 }
 }
