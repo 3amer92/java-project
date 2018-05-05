@@ -64,7 +64,7 @@ pipeline {
 }
 		steps{
 			sh "wget http://172.31.26.211/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar"
-			sh "java -jar rectangle_{env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 3 4"
+			sh "java -jar rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 3 4"
 }
 
 }
@@ -74,7 +74,7 @@ pipeline {
 }
 			steps{
 				sh "wget http://172.31.26.211/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar"
-                        sh "java -jar rectangle_{env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 3 4"
+                        sh "java -jar rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 3 4"
 
 }
 }
@@ -89,7 +89,7 @@ pipeline {
 				branch 'master'
 }
 			steps{
-				sh "cp /var/www/html/rectangles/all/${env.BRANCH_NAME}/rectangle_{env.MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/green/"
+				sh "cp /var/www/html/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/green/"
 }
 
 }
@@ -118,8 +118,8 @@ pipeline {
 				echo 'Pushing to Origin Master'
 				sh 'git push origin master'
 				echo "Tagging the Release"
-				sh "git tag rectangle-{env.MAJOR_VERSION}.${env.BUILD_NUMBER}"
-				sh "git push origin rectangle-{env.MAJOR_VERSION}.${env.BUILD_NUMBER}"
+				sh "git tag rectangle-${env.MAJOR_VERSION}.${env.BUILD_NUMBER}"
+				sh "git push origin rectangle-${env.MAJOR_VERSION}.${env.BUILD_NUMBER}"
 				
 }
 }
