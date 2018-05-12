@@ -19,6 +19,20 @@ pipeline {
 				sayHello 'Awsome Student!'
 }
 }
+		stage('Git Information'){
+
+			agent any
+			
+			steps{
+				echo "My Branch Name: ${env.BRANCH_NAME}"
+				
+				script{
+					def myLib = new linuxacademy.git.gitStuff();
+					echo "My Commit: ${myLib.gitCommit("${env.WORKSPACE}/.git")}"
+}				
+}
+}
+
 	
 		stage('Unit Tests'){
 			 agent{
@@ -128,7 +142,7 @@ pipeline {
 				echo "Tagging the Release"
 				sh "git tag rectangle-${env.MAJOR_VERSION}.${env.BUILD_NUMBER}"
 				sh "git push origin rectangle-${env.MAJOR_VERSION}.${env.BUILD_NUMBER}"
-				sh "echo 'test'"
+				
 	
 }
 }
